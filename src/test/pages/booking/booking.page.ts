@@ -1,20 +1,18 @@
 import pactum from 'pactum';
 import { setBookingId, getBookingId } from '../../utils/context.utils';
 import { getToken } from '../../utils/context.utils';
-import { createBookingResponseSchema } from '../../schemas/booking.schema';
+import { createBookingResponseSchema} from '../../schemas/booking.schema';
 import { bookingPayload } from '../../utils/bookingPayload.type';
 import { BASE_URL } from '../../config/config';
 
 
 export const createBooking = async ( payload: bookingPayload) => {
-
-  console.log('Using BASE_URL2 =', BASE_URL); 
     const res = await pactum.spec()
     .post(`${BASE_URL}/booking`)
     .withHeaders('Content-Type', 'application/json')
     .withHeaders('Accept', 'application/json')
     .withJson(payload)
-    .expectStatus(200)
+    .expectStatus(200)  
     .expectJsonSchema(createBookingResponseSchema)
     .toss();
      setBookingId(res.body.bookingid);

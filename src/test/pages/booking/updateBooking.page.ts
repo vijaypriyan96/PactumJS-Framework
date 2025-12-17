@@ -1,6 +1,6 @@
 import pactum from 'pactum';
 import { getToken } from '../../utils/context.utils';
-import { bookingSchema } from '../../schemas/booking.schema';
+import { bookingSchemas } from '../../schemas/booking.schema';
 import assert from 'assert';
 
 export const putRequest = async (ID: number, title: string, body: string) =>{
@@ -89,7 +89,7 @@ export const herokuappput = async (id: number, payload: {
     .withHeaders('Cookie', `token=${token}`) // correct usage for restful-booker
     .withJson(payload)
     .expectStatus(200)
-    .expectJsonSchema(bookingSchema)
+    .expectJsonSchema(bookingSchemas)
     .expectJsonLike({
         firstname: payload.firstname,
         lastname: payload.lastname,

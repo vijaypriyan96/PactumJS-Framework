@@ -36,7 +36,7 @@ export const createBookingResponseSchema = {
 };
 
 // GET / PUT / PATCH /booking/{id}
-export const bookingSchema = {
+export const bookingSchemas = {
   type: 'object',
   properties: {
     firstname: { type: 'string' },
