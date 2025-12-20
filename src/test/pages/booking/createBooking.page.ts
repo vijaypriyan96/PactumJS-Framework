@@ -1,17 +1,8 @@
 import pactum from 'pactum';
 import { createBookingResponseSchema } from '../../schemas/booking.schema';
+import { bookingPayload } from '../../utils/bookingPayload.type';
 
-export const herokuapp = async (payload: {
-  firstname: string, 
-  lastname: string,
-  totalprice: number,
-  depositpaid: boolean,
-  bookingdates: {
-    checkin: string,
-    checkout: string
-  },
-  additionalneeds: string
-}) =>{
+export const herokuapp = async (payload: bookingPayload) =>{
      const res = await pactum.spec()
      .post('https://restful-booker.herokuapp.com/booking')
      .withHeaders('Content-Type', 'application/json')
@@ -27,17 +18,7 @@ export const herokuapp = async (payload: {
      return res.body;
 }
 
-export const createBookingExpectingStatus = async (expectedStatus: number, payload: {
-  firstname: string, 
-  lastname: string,
-  totalprice: number,
-  depositpaid: boolean,
-  bookingdates: {
-    checkin: string,
-    checkout: string
-  },
-  additionalneeds: string
-}) =>{
+export const createBookingExpectingStatus = async (expectedStatus: number, payload: bookingPayload) =>{
      const res = await pactum.spec()
      .post('https://restful-booker.herokuapp.com/booking')
      .withHeaders('Content-Type', 'application/json')

@@ -2,6 +2,7 @@ import pactum from 'pactum';
 import { getToken } from '../../utils/context.utils';
 import { bookingSchemas } from '../../schemas/booking.schema';
 import assert from 'assert';
+import { bookingPayload } from '../../utils/bookingPayload.type';
 
 export const putRequest = async (ID: number, title: string, body: string) =>{
     const payload ={
@@ -65,17 +66,7 @@ export const fakeget = async ( id: number, title: string, dueDate: string, compl
     return res.body;
 }
 
-export const herokuappput = async (id: number, payload: {
-    firstname: string,
-    lastname: string,
-    totalprice: number,
-    depositpaid: boolean,
-    bookingdates: {
-        checkin: string,
-        checkout: string
-    },
-    additionalneeds: string
-}) => {
+export const herokuappput = async (id: number, payload: bookingPayload) => {
     const token = await getToken(); // get the token properly
 
   if (!token) {

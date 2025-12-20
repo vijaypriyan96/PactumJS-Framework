@@ -1,6 +1,7 @@
 import { DataTable, When } from '@cucumber/cucumber';
 import * as put from '../pages/booking/updateBooking.page';
 
+
 When('I update post ID {int} with title {string} and body {string}', async (int: number, title: string, body: string) => {
 
     await put.putRequest(int, title, body);
